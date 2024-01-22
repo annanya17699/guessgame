@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import {
   Card,
   Col,
@@ -28,14 +28,16 @@ export default function NewUser(props) {
   const handleCloseUser = () =>{
     setShowUser(false);
   }
-  const handleNewUser = () =>{
+  const handleNewUser = (e) =>{
+    e.preventDefault();
     props.AddUser(username);
     setShowUser(true);
   }
   return (
     <Container>
+      <Card style = {{margin: '1rem 0' , padding : '1rem'}}>
       <Alert variant="success">Welcome to *Guess The Number*</Alert>
-      <Form onSubmit={handleNewUser}>
+      <Form onSubmit={(e)=>handleNewUser(e)}>
         <Form.Group className="mb-3" controlId="username">
           <Form.Label>Enter your Name</Form.Label>
           <Form.Control type="text" placeholder="Enter your name here" value = {username} onChange={(e)=> handleName(e)}/>
@@ -44,6 +46,7 @@ export default function NewUser(props) {
           Lets' Get Started!
         </Button>
       </Form>
+      </Card>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Incorrect Username</Modal.Title>

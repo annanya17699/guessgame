@@ -9,47 +9,31 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-export default function UserName() {
+export default function UserName(props) {
+  let navigate = useNavigate(); 
+  function handlePlayGame(user){
+    console.log(user)
+    return navigate("/gamepage" , { state: { user:  user, winnerList : props.winnerList}});
+  }
   return (
     <Container className="userpage">
       <Row>
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>User 1</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the User 1 and make up the
-                bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary">Select User</Button>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>User 1</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the User 1 and make up the
-                bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary">Select User</Button>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>User 1</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the User 1 and make up the
-                bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary">Select User</Button>
-            </Card.Body>
-          </Card>
-        </Col>
+        {props.userList.length === 0
+          ? ""
+          : props.userList.map((user) => {
+              return (
+                <Col key={user.Id}>
+                  <Card>
+                    <Card.Body>
+                      <Card.Title>{user.username}</Card.Title>
+                      <Button variant="success" onClick={()=>handlePlayGame(user)} >Start Game</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            })}
       </Row>
     </Container>
   );

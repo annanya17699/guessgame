@@ -9,8 +9,12 @@ import {
   Col
 } from "react-bootstrap";
 import Winner from "./Winner";
+import { useLocation } from 'react-router-dom';
 
 export default function GamePage(props) {
+    const location = useLocation();
+    const user = location.state.user
+    const UpdateLeaderBoard= location.state.UpdateLeaderBoard
     const [winner,setWinner] = useState(false);
     const [show,setShow] = useState(false);
     const [attempt,setAttempt] = useState(0);
@@ -41,7 +45,7 @@ export default function GamePage(props) {
     }
   return (
     <Container>
-        {winner ? <Winner attempt={attempt} winningNumber = {winningNumber} winner={winner}/> : ''}
+        {winner ? <Winner winnerList = {props.winnerList} user={user} attempt={attempt} winningNumber = {winningNumber} winner={winner}/> : ''}
         <Row>
           <Col>
         <Alert variant="primary">Instructions : Enter Number between 1 and 100</Alert>
@@ -56,7 +60,7 @@ export default function GamePage(props) {
       </Form>
       </Col>
       <Col>
-        <Alert variant="danger">Attempts by UserName : {attempt}</Alert>
+        <Alert variant="danger">Attempts by {user.username} : {attempt}</Alert>
         {guessList.length === 0 ? <Alert variant="warning">Lets Make the 1st Guess</Alert>
         :
         guessList.map((element)=>{
