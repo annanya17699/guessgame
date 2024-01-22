@@ -1,10 +1,7 @@
 import React , { useState } from "react";
 import {
   Card,
-  Col,
   Container,
-  Row,
-  Image,
   Alert,
   Form,
   Button,
@@ -14,7 +11,6 @@ import {
 export default function NewUser(props) {
   const [username,setUsername] = useState('');
   const [show,setShow] = useState(false);
-  const [showUser,setShowUser] = useState(false);
   const handleName = (e) => {
     if(e.target.value !== null || e.target.value !== ''){
       setUsername(e.target.value);
@@ -25,13 +21,9 @@ export default function NewUser(props) {
   const handleClose = () =>{
     setShow(false);
   }
-  const handleCloseUser = () =>{
-    setShowUser(false);
-  }
   const handleNewUser = (e) =>{
     e.preventDefault();
     props.AddUser(username);
-    setShowUser(true);
   }
   return (
     <Container>
@@ -52,11 +44,6 @@ export default function NewUser(props) {
           <Modal.Title>Incorrect Username</Modal.Title>
         </Modal.Header>
         <Modal.Body>Kindly input your beautiful name to continue!</Modal.Body>
-      </Modal>
-      <Modal show={showUser} onHide={handleCloseUser}>
-        <Modal.Header closeButton>
-          <Modal.Title>Welcome {username}</Modal.Title>
-        </Modal.Header>
       </Modal>
     </Container>
   );

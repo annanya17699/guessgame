@@ -4,9 +4,6 @@ import {
   Col,
   Container,
   Row,
-  Image,
-  Alert,
-  Form,
   Button,
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 export default function UserName(props) {
   let navigate = useNavigate(); 
   function handlePlayGame(user){
-    console.log(user)
     return navigate("/gamepage" , { state: { user:  user, winnerList : props.winnerList}});
   }
   return (
@@ -24,7 +20,7 @@ export default function UserName(props) {
           ? ""
           : props.userList.map((user) => {
               return (
-                <Col key={user.Id}>
+                <Col key={user.Id} xl={2}>
                   <Card>
                     <Card.Body>
                       <Card.Title>{user.username}</Card.Title>

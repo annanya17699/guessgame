@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react'
-import { Alert, Button, Table } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
+import { Table } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 
 export default function Leaderboard(props) {
   const location = useLocation();
-  const winner = location.state.winner
+  let winner = null;
+  console.log(location.state)
+  if(location.state !== null){
+    winner = location.state.winner
+  }
   useEffect(()=>{
-    props.AddUpdateWinner(winner);
-  },[])
+    if(winner !== null) props.AddUpdateWinner(winner);
+  },[props,winner])
   return (
     <>
-    <Button variant='success'><Link to='/' style={{color : 'white', textDecoration: 'none'}}>Go to Homepage</Link></Button>
      {props.winnerList.length === 0 ? 'Play a game to generate Leaderboard' :
      <Table striped bordered hover responsive>
      <thead>

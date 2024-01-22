@@ -14,14 +14,12 @@ import { useLocation } from 'react-router-dom';
 export default function GamePage(props) {
     const location = useLocation();
     const user = location.state.user
-    const UpdateLeaderBoard= location.state.UpdateLeaderBoard
     const [winner,setWinner] = useState(false);
     const [show,setShow] = useState(false);
     const [attempt,setAttempt] = useState(0);
     const [guess , setGuess] = useState('');
     const [guessList , setGuessList] = useState([]);
     const winningNumber = props.winningNumber;
-    console.log(winningNumber)
     const handleClose = () =>{
       setShow(false);
     }
@@ -30,10 +28,10 @@ export default function GamePage(props) {
     }
     const handleResult = (e)=>{
       e.preventDefault();
-      if(guess < 0 ||guess >100 ){
+      if(guess < 0 || guess >100 ){
         setShow(true);
       }
-      else if(winningNumber != guess){
+      else if(Number.parseInt(winningNumber) !== Number.parseInt(guess)){
         let diff = winningNumber > guess ? 'smaller' : 'larger';
         setGuessList([...guessList ,{guess : guess , diff : diff}]);
         setAttempt(attempt+1);
