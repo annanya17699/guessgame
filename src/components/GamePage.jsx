@@ -4,33 +4,72 @@ import {
   Form,
   Button,
   Alert,
-  Card,
-  ListGroup,
+  Modal,
   Row,
-  Col,
+  Col
 } from "react-bootstrap";
 import Winner from "./Winner";
 
-export default function GamePage() {
-    const [winner,setWinner] = useState(true)
+export default function GamePage(props) {
+    const [winner,setWinner] = useState(false);
+    const [show,setShow] = useState(false);
+    const [attempt,setAttempt] = useState(0);
+    const [guess , setGuess] = useState('');
+    const [guessList , setGuessList] = useState([]);
+    const winningNumber = props.winningNumber;
+    console.log(winningNumber)
+    const handleClose = () =>{
+      setShow(false);
+    }
+    const handleGuess = (e)=>{
+        setGuess(e.target.value)
+    }
+    const handleResult = (e)=>{
+      e.preventDefault();
+      if(guess < 0 ||guess >100 ){
+        setShow(true);
+      }
+      else if(winningNumber != guess){
+        let diff = winningNumber > guess ? 'smaller' : 'larger';
+        setGuessList([...guessList ,{guess : guess , diff : diff}]);
+        setAttempt(attempt+1);
+      }else{
+        setAttempt(attempt+1);
+        setWinner(true)
+      }
+      setGuess('')
+    }
   return (
     <Container>
-        {winner ? <Winner/> : ''}
+        {winner ? <Winner attempt={attempt} winningNumber = {winningNumber} winner={winner}/> : ''}
+        <Row>
+          <Col>
         <Alert variant="primary">Instructions : Enter Number between 1 and 100</Alert>
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form onSubmit={(e)=>handleResult(e)}>
+        <Form.Group className="mb-3" controlId="guess">
           <Form.Label>Enter Your Guess</Form.Label>
-          <Form.Control type="email" placeholder="Enter Your Guess" />
+          <Form.Control type="number" placeholder="Enter Your Guess" value={guess} onChange={(e)=>handleGuess(e)}/>
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <Button variant="outline-success" type="submit">
+        Submit your Guess
+      </Button>
       </Form>
-        <Alert variant="danger">Attempts by UserName : 0</Alert>
-            
-              <Alert variant="warning">45 is smaller than the number, try again!</Alert>
-              <Alert variant="warning">80 is greater than the number</Alert>
-              <Alert variant="warning">67 is greater than the number</Alert>
+      </Col>
+      <Col>
+        <Alert variant="danger">Attempts by UserName : {attempt}</Alert>
+        {guessList.length === 0 ? <Alert variant="warning">Lets Make the 1st Guess</Alert>
+        :
+        guessList.map((element)=>{
+          return <Alert variant="warning">{element.guess} is {element.diff} than the number, try again!</Alert>
+        })}
+         </Col>
+        </Row>
+         <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Incorrect Input</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Kindly input number between 1 and 100</Modal.Body>
+      </Modal>
     </Container>
   );
 }
