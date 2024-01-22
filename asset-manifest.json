@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/guessgame/static/css/main.6e9b5369.css",
+    "main.js": "/guessgame/static/js/main.578ba9c1.js",
+    "static/js/787.2a510e31.chunk.js": "/guessgame/static/js/787.2a510e31.chunk.js",
+    "static/media/helloduck.gif": "/guessgame/static/media/helloduck.ca46a2ed930957a869b5.gif",
+    "static/media/inputduck.gif": "/guessgame/static/media/inputduck.95c300e38238e0da9a70.gif",
+    "static/media/happyduck.gif": "/guessgame/static/media/happyduck.c1dd2c4206a54f2fa407.gif",
+    "static/media/sadduck.gif": "/guessgame/static/media/sadduck.c31fa90bbd587ab8d084.gif",
+    "static/media/rankduck.gif": "/guessgame/static/media/rankduck.cf6cc8121b8b4998cf56.gif",
+    "index.html": "/guessgame/index.html",
+    "main.6e9b5369.css.map": "/guessgame/static/css/main.6e9b5369.css.map",
+    "main.578ba9c1.js.map": "/guessgame/static/js/main.578ba9c1.js.map",
+    "787.2a510e31.chunk.js.map": "/guessgame/static/js/787.2a510e31.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6e9b5369.css",
+    "static/js/main.578ba9c1.js"
+  ]
+}
