@@ -21,7 +21,7 @@ export default function UserName(props) {
           : props.userList.map((user) => {
               return (
                 <Col key={user.Id} xl={2}>
-                  <Card>
+                  <Card className="my-2">
                     <Card.Body>
                       <Card.Title>{user.username}</Card.Title>
                       <Button variant="success" onClick={()=>handlePlayGame(user)} >Start Game</Button>

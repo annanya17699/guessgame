@@ -33,7 +33,7 @@ export default function GamePage(props) {
       }
       else if(Number.parseInt(winningNumber) !== Number.parseInt(guess)){
         let diff = winningNumber > guess ? 'smaller' : 'larger';
-        setGuessList([...guessList ,{guess : guess , diff : diff}]);
+        setGuessList([{guess : guess , diff : diff},...guessList]);
         setAttempt(attempt+1);
       }else{
         setAttempt(attempt+1);

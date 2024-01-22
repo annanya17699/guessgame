@@ -15,13 +15,13 @@ function App() {
   } else {
     localWinnerList = JSON.parse(localStorage.getItem("winnerList"));
   }
-  const winningNumber = Math.floor(Math.random() * 101);
+  const winningNumber = Math.floor(Math.random() * 100) + 1;
   const [winnerList, setWinnerList] = useState(localWinnerList);
 
   let localList = [];
   if (localStorage.getItem("userList") === null) {
     localList = [];
-  } else {
+  } else { 
     localList = JSON.parse(localStorage.getItem("userList"));
   }
   const [userList, setUserList] = useState(localList);

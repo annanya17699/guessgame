@@ -2,6 +2,12 @@
   background-color: black;
   padding: 1rem;
   color : white;
-  min-height: 80vh;
+  min-height: 100vh;
+}
+.footer{
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
 }
 
