@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { Table } from 'react-bootstrap';
+import { Container, Table, Image, Alert } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
-
+import rankduck from '../assets/rankduck.gif'
 export default function Leaderboard(props) {
   const location = useLocation();
   let winner = null;
@@ -13,12 +13,12 @@ export default function Leaderboard(props) {
     if(winner !== null) props.AddUpdateWinner(winner);
   },[props,winner])
   return (
-    <>
-     {props.winnerList.length === 0 ? 'Play a game to generate Leaderboard' :
+    <Container className='p-3 text-center'>
+        <Alert variant='info'>LEADERBOARD <Image src = {rankduck} width="100px"/></Alert>
+      {props.winnerList.length === 0 ? 'Play a game to generate Leaderboard' :
      <Table striped bordered hover responsive>
      <thead>
      <tr>
-      <th>Id</th>
           <th>Rank</th>
           <th>Name</th>
           <th>Attempts</th>
@@ -30,7 +30,6 @@ export default function Leaderboard(props) {
      }).map((element, index) => {
       return (
         <tr>
-          <th>{element.user.Id}</th>
           <th>{index+1}</th>
           <th>{element.user.username}</th>
           <th>{element.attempt}</th>
@@ -40,6 +39,6 @@ export default function Leaderboard(props) {
      } 
      </tbody>
      </Table>}
-    </>
+    </Container>
   )
 }

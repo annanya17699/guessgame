@@ -8,7 +8,7 @@ export default function Winner(props) {
     return navigate("/leaderboard" , { state: { winner : winner}});
   }
   return (
-    <Modal show={props.winner}>
+    <Modal show={props.winner} backdrop="static" keyboard={false}>
         <Modal.Header>
           <Modal.Title>Congratulations</Modal.Title>
         </Modal.Header>

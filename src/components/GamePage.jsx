@@ -6,8 +6,12 @@ import {
   Alert,
   Modal,
   Row,
-  Col
+  Col,
+  Image
 } from "react-bootstrap";
+import sadduck from '../assets/sadduck.gif'
+import helloduck from '../assets/helloduck.gif'
+import happyduck from '../assets/happyduck.gif'
 import Winner from "./Winner";
 import { useLocation } from 'react-router-dom';
 
@@ -56,6 +60,7 @@ export default function GamePage(props) {
         Submit your Guess
       </Button>
       </Form>
+      {winner ? <Image src={happyduck} width='200px'/> : guessList.length === 0 ? <Image src={helloduck} width='200px'/> : <Image src={sadduck} width='200px'/>}
       </Col>
       <Col>
         <Alert variant="danger">Attempts by {user.username} : {attempt}</Alert>
